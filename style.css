@@ -1,0 +1,132 @@
+/* Reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8fafc;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  background: #2563eb;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.navbar a, .btn-cart {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Sections */
+.section {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.section h2 {
+  margin-bottom: 2rem;
+  color: #2563eb;
+}
+
+/* Products */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.product {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.product img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+.product h3 {
+  margin: 10px 0 5px;
+}
+.price {
+  font-weight: bold;
+  color: #16a34a;
+}
+.product button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.product button:first-of-type {
+  background: #2563eb;
+  color: white;
+}
+.product button:last-of-type {
+  background: #16a34a;
+  color: white;
+}
+
+/* Contact Form */
+.contact-form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.contact-form input, .contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+}
+.contact-form button {
+  background: #2563eb;
+  color: white;
+  padding: 10px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+/* Modals */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+.modal-content {
+  background: white;
+  margin: 10% auto;
+  padding: 20px;
+  max-width: 400px;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+.close {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background: #1e293b;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+footer a {
+  color: #38bdf8;
+  text-decoration: none;
+}
