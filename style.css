@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f8fafc;
+  background: #FFFFFF;
   color: #333;
 }
 
@@ -131,7 +131,7 @@ footer {
   border-top: 1px solid #ddd;
 }
 footer a {
-  color: #2563eb;
+  color: #FFFFFF;
   text-decoration: none;
 }
 footer a:hover {
