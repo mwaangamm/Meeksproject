@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maxos Store</title>
-  <link rel="stylesheet" href="style.css">
-</head>
 <body>
-
   <!-- Navbar -->
   <header>
     <nav class="navbar">
@@ -17,112 +8,67 @@
         <li><a href="#electrical">Electrical</a></li>
         <li><a href="#electronics">Electronics</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><button onclick="showCart()" class="btn-cart">Cart (<span id="cartCount">0</span>)</button></li>
+        <li>
+          <button onclick="showCart()" class="btn-cart">
+            Cart (<span id="cartCount">0</span>)
+          </button>
+        </li>
       </ul>
     </nav>
   </header>
 
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <h1>Welcome to Maxos Store</h1>
+    <p>Your one-stop shop for stylish shoes, reliable electricals, and modern electronics.</p>
+    <a href="#shoes" class="btn-buy">Shop Now</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <h2>About Our Store</h2>
+    <p class="section-statement">
+      At Maxos Store, we believe in delivering top-quality products at unbeatable prices.
+      From trendy footwear to everyday electrical essentials and high-tech electronics,
+      our mission is to make shopping easier and more affordable for everyone.
+    </p>
+    <ul class="about-highlights">
+      <li>✔ Wide variety of quality products</li>
+      <li>✔ Affordable and competitive prices</li>
+      <li>✔ Fast, secure checkout and reliable service</li>
+    </ul>
+  </section>
+
   <!-- Shoes Section -->
   <section id="shoes" class="section">
     <h2>Shoes</h2>
-    <p class="section-desc">Discover our stylish and durable shoes for every occasion.</p>
-    <div class="product-grid">
-      <div class="product">
-        <img src="https://drive.google.com/uc?export=view&id=1CEkqVmrvgo6HOYF-nGCFiN4nWIZAa8qz
-" alt="Shoe 1">
-        <h3>Running Sneakers</h3>
-        <p>Comfortable running sneakers.</p>
-        <p class="price">$50</p>
-        <button onclick="buyNow('Running Sneakers', 50)">Buy Now</button>
-        <button onclick="addToCart('Running Sneakers', 50)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <img src="https://drive.google.com/file/d/1Y8td7yVcLleP2BaihZ-Yl5XOdD9Pv92q/view?usp=sharing, https://drive.google.com/file/d/1pPAcr0-h4A_IlTbeoOSBvoQLNUvr0eTe/view?usp=sharing" alt="Shoe 2">
-        <h3>Leather Boots</h3>
-        <p>Durable stylish boots.</p>
-        <p class="price">$80</p>
-        <button onclick="buyNow('Leather Boots', 80)">Buy Now</button>
-        <button onclick="addToCart('Leather Boots', 80)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <img src="https://drive.google.com/file/d/1Y8td7yVcLleP2BaihZ-Yl5XOdD9Pv92q/view?usp=sharing, https://drive.google.com/file/d/1pPAcr0-h4A_IlTbeoOSBvoQLNUvr0eTe/view?usp=sharing" alt="Shoe 3">
-        <h3>Sport Sandals</h3>
-        <p>Perfect for summer wear.</p>
-        <p class="price">$35</p>
-        <button onclick="buyNow('Sport Sandals', 35)">Buy Now</button>
-        <button onclick="addToCart('Sport Sandals', 35)">Add to Cart</button>
-      </div>
+    <p class="section-statement">Step up your style with our collection of premium shoes.</p>
+    <div class="products">
+      <!-- Product Cards Here -->
     </div>
   </section>
 
   <!-- Electrical Section -->
   <section id="electrical" class="section">
     <h2>Electrical</h2>
-    <p class="section-desc">Reliable home electrical appliances designed to make life easier.</p>
-    <div class="product-grid">
-      <div class="product">
-        <img src="https://via.placeholder.com/200" alt="Blender">
-        <h3>Blender</h3>
-        <p>Powerful 5-speed blender.</p>
-        <p class="price">$60</p>
-        <button onclick="buyNow('Blender', 60)">Buy Now</button>
-        <button onclick="addToCart('Blender', 60)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/200" alt="Microwave">
-        <h3>Microwave</h3>
-        <p>Fast heating 800W microwave.</p>
-        <p class="price">$120</p>
-        <button onclick="buyNow('Microwave', 120)">Buy Now</button>
-        <button onclick="addToCart('Microwave', 120)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/200" alt="Kettle">
-        <h3>Kettle</h3>
-        <p>1.7L electric kettle.</p>
-        <p class="price">$25</p>
-        <button onclick="buyNow('Kettle', 25)">Buy Now</button>
-        <button onclick="addToCart('Kettle', 25)">Add to Cart</button>
-      </div>
+    <p class="section-statement">Power up with durable and trusted electrical essentials.</p>
+    <div class="products">
+      <!-- Product Cards Here -->
     </div>
   </section>
 
   <!-- Electronics Section -->
   <section id="electronics" class="section">
     <h2>Electronics</h2>
-    <p class="section-desc">Latest tech gadgets to keep you connected and entertained.</p>
-    <div class="product-grid">
-      <div class="product">
-        <img src="https://via.placeholder.com/200" alt="Phone">
-        <h3>Smartphone</h3>
-        <p>Latest Android smartphone.</p>
-        <p class="price">$500</p>
-        <button onclick="buyNow('Smartphone', 500)">Buy Now</button>
-        <button onclick="addToCart('Smartphone', 500)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/200" alt="Laptop">
-        <h3>Laptop</h3>
-        <p>Lightweight and powerful laptop.</p>
-        <p class="price">$900</p>
-        <button onclick="buyNow('Laptop', 900)">Buy Now</button>
-        <button onclick="addToCart('Laptop', 900)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/200" alt="Headphones">
-        <h3>Headphones</h3>
-        <p>Noise cancelling headphones.</p>
-        <p class="price">$150</p>
-        <button onclick="buyNow('Headphones', 150)">Buy Now</button>
-        <button onclick="addToCart('Headphones', 150)">Add to Cart</button>
-      </div>
+    <p class="section-statement">Upgrade your life with the latest electronic gadgets.</p>
+    <div class="products">
+      <!-- Product Cards Here -->
     </div>
   </section>
 
   <!-- Contact Section -->
   <section id="contact" class="section">
     <h2>Contact Us</h2>
-    <p class="section-desc">We’d love to hear from you! Fill in the form below to reach out.</p>
     <form id="contactForm" class="contact-form">
       <input type="text" id="name" placeholder="Your Name" required>
       <input type="email" id="email" placeholder="Your Email" required>
@@ -130,32 +76,6 @@
       <button type="submit" class="btn-buy">Send Message</button>
     </form>
   </section>
-
-  <!-- Cart Modal -->
-  <div id="cartModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeCart()">&times;</span>
-      <h2>Your Cart</h2>
-      <ul id="cartItems"></ul>
-      <p>Total: $<span id="cartTotal">0</span></p>
-      <button onclick="checkout()">Checkout</button>
-    </div>
-  </div>
-
-  <!-- Buy Now Modal -->
-  <div id="buyNowModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeBuyNow()">&times;</span>
-      <h2>Payment</h2>
-      <p id="buyNowItem"></p>
-      <label>Payment Method:</label>
-      <select>
-        <option>Card</option>
-        <option>Mobile Money</option>
-      </select>
-      <button onclick="confirmPayment()">Confirm Payment</button>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer>
@@ -167,8 +87,5 @@
     </div>
     <p>Email: info@maxosstore.com | Phone: +260 773 786 111</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
-</html>
 
