@@ -1,2 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maxos Store</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Maxos Store</h1>
+      <ul>
+        <li><a href="#apparels">Apparels</a></li>
+        <li><a href="#shoes">Shoes</a></li>
+        <li><a href="#cloths">Cloths</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+ <!-- Cart Modal -->
+<div id="cartModal">
+  <div class="cart-content">
+    <h3>Your Cart</h3>
+    <div id="cartItems"></div>
+    <div class="cart-buttons">
+      <button class="checkout" onclick="checkout()">Checkout</button>
+      <button class="close" onclick="closeCart()">Close</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <h1>Welcome to Maxos Store</h1>
+    <p>Your one-stop shop for stylish apparels, shoes, and cloths.</p>
+    <a href="#apparels" class="btn-buy">Shop Now</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <h2>About Our Store</h2>
+    <p class="section-statement">
+      At Maxos Store, we provide affordable and stylish fashion essentials.
+      Whether you’re looking for trendy apparels, modern shoes, or classic cloths,
+      our mission is to make shopping simple and reliable.
+    </p>
+    <ul class="about-highlights">
+      <li>✔ Wide variety of quality products</li>
+      <li>✔ Affordable and competitive prices</li>
+      <li>✔ Fast, secure checkout and reliable service</li>
+    </ul>
+  </section>
+
+  <!-- Apparels Section -->
+  <section id="apparels" class="section">
+    <h2>Apparels</h2>
+    <p class="section-statement">Discover stylish and comfortable apparels for every occasion.</p>
+    <div class="products">
+      <div class="product">
+        <img src="apparel1.jpg" alt="Casual Jacket">
+        <h3>Casual Jacket</h3>
+        <p>Trendy and lightweight casual jacket for daily wear.</p>
+        <button class="btn-buy" onclick="buyNow('Casual Jacket')">Buy Now</button>
+        <button class="btn-cart" onclick="addToCart('Casual Jacket')">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="apparel2.jpg" alt="Denim Jeans">
+        <h3>Denim Jeans</h3>
+        <p>Classic blue denim jeans with a perfect fit.</p>
+        <button class="btn-buy" onclick="buyNow('Denim Jeans')">Buy Now</button>
+        <button class="btn-cart" onclick="addToCart('Denim Jeans')">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="apparel3.jpg" alt="Hoodie">
+        <h3>Hoodie</h3>
+        <p>Comfortable hoodie for casual wear.</p>
+        <button class="btn-buy" onclick="buyNow('Hoodie')">Buy Now</button>
+        <button class="btn-cart" onclick="addToCart('Hoodie')">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shoes Section -->
+  <section id="shoes" class="section">
+    <h2>Shoes</h2>
+    <p class="section-statement">Step into comfort and style with our premium shoe collection.</p>
+    <div class="products">
+      <div class="product">
+        <img src="shoe1.jpg" alt="Sneakers">
+        <h3>Sneakers</h3>
+        <p>Modern sneakers designed for everyday comfort.</p>
+        <button class="btn-buy" onclick="buyNow('Sneakers')">Buy Now</button>
+        <button class="btn-cart" onclick="addToCart('Sneakers')">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="shoe2.jpg" alt="Leather Boots">
+        <h3>Leather Boots</h3>
+        <p>Durable leather boots with premium finish.</p>
+        <button class="btn-buy" onclick="buyNow('Leather Boots')">Buy Now</button>
+        <button class="btn-cart" onclick="addToCart('Leather Boots')">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="shoe3.jpg" alt="Sandals">
+        <h3>Sandals</h3>
+        <p>Comfortable and lightweight sandals for casual use.</p>
+        <button class="btn-buy" onclick="buyNow('Sandals')">Buy Now</button>
+        <button class="btn-cart" onclick="addToCart('Sandals')">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cloths Section -->
+  <section id="cloths" class="section">
+    <h2>Cloths</h2>
+    <p class="section-statement">Upgrade your wardrobe with our wide selection of cloths.</p>
+    <div class="products">
+      <div class="product">
+        <img src="cloth1.jpg" alt="T-Shirt">
+        <h3>T-Shirt</h3>
+        <p>Soft cotton t-shirt available in multiple colors.</p>
+        <button class="btn-buy" onclick="buyNow('T-Shirt')">Buy Now</button>
+        <button class="btn-cart" onclick="addToCart('T-Shirt')">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="cloth2.jpg" alt="Formal Shirt">
+        <h3>Formal Shirt</h3>
+        <p>Elegant formal shirt suitable for work and events.</p>
+        <button class="btn-buy" onclick="buyNow('Formal Shirt')">Buy Now</button>
+        <button class="btn-cart" onclick="addToCart('Formal Shirt')">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="cloth3.jpg" alt="Dress">
+        <h3>Dress</h3>
+        <p>Stylish dress for casual and party wear.</p>
+        <button class="btn-buy" onclick="buyNow('Dress')">Buy Now</button>
+        <button class="btn-cart" onclick="addToCart('Dress')">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <form id="contactForm" class="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn-buy">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Maxos Store | All rights reserved.</p>
+    <div class="social">
+      <a href="https://facebook.com" target="_blank">Facebook</a> | 
+      <a href="https://instagram.com" target="_blank">Instagram</a> | 
+      <a href="https://tiktok.com" target="_blank">TikTok</a>
+    </div>
+    <p>Email: info@maxosstore.com | Phone: +260 773 786 111</p>
+  </footer>
+</body>
+</html>
 
 
