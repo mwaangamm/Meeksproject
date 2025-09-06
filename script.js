@@ -1,98 +1,95 @@
-let cart = [];
+document.addEventListener("DOMContentLoaded", () => {
+  let cartCount = 0;
+  let cartTotal = 0;
+  const cartItems = [];
 
-// Add to Cart
-function addToCart(productName, price) {
-  cart.push({ name: productName, price: price });
-  updateCartCount();
-  openCart(); // auto-open cart when adding
-}
+  // Cart elements
+  const cartIcon = document.getElementById("cart-icon");
+  const cartSidebar = document.getElementById("cart-sidebar");
+  const closeCartBtn = document.getElementById("close-cart");
+  const cartItemsContainer = document.getElementById("cart-items");
+  const cartTotalEl = document.getElementById("cart-total");
 
-// Update Cart Count in Navbar
-function updateCartCount() {
-  document.getElementById("cartCount").innerText = cart.length;
-}
+  // Badge
+  const badge = document.createElement("span");
+  badge.id = "cart-count";
+  badge.textContent = cartCount;
+  cartIcon.style.position = "relative";
+  cartIcon.appendChild(badge);
 
-// Open Cart Modal
-function openCart() {
-  let cartModal = document.getElementById("cartModal");
-  let cartItemsContainer = document.getElementById("cartItems");
+  // Handle Add to Cart
+  const cartButtons = document.querySelectorAll(".btn");
+  cartButtons.forEach(button => {
+    if (button.textContent.includes("Add to Cart")) {
+      button.addEventListener("click", (e) => {
+        const product = e.target.closest(".product");
+        const name = product.querySelector("h3").textContent;
+        const price = (Math.random() * 50 + 20).toFixed(2); // Mock price
+        const imgSrc = product.querySelector("img").src;
 
-  cartItemsContainer.innerHTML = "";
+        // Update cart
+        cartCount++;
+        cartTotal += parseFloat(price);
+        badge.textContent = cartCount;
+        badge.style.display = "inline-block";
 
-  if (cart.length === 0) {
-    cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
-  } else {
-    let total = 0;
-    cart.forEach((item, index) => {
-      total += item.price;
-      cartItemsContainer.innerHTML += `
-        <div class="cart-item">
-          <span>${item.name} - $${item.price}</span>
-          <button onclick="removeFromCart(${index})">Remove</button>
-        </div>
-      `;
+        cartItems.push({ name, price, imgSrc });
+        renderCart();
+      });
+    }
+  });
+
+  // Render Cart Items
+  function renderCart() {
+    cartItemsContainer.innerHTML = "";
+    if (cartItems.length === 0) {
+      cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+      cartItems.forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+        div.innerHTML = `
+          <img src="${item.imgSrc}" alt="${item.name}">
+          <div class="cart-item-details">
+            <strong>${item.name}</strong><br>
+            $${item.price}
+          </div>
+        `;
+        cartItemsContainer.appendChild(div);
+      });
+    }
+    cartTotalEl.textContent = cartTotal.toFixed(2);
+  }
+
+  // Open cart
+  cartIcon.addEventListener("click", (e) => {
+    e.preventDefault();
+    cartSidebar.classList.add("active");
+  });
+
+  // Close cart
+  closeCartBtn.addEventListener("click", () => {
+    cartSidebar.classList.remove("active");
+  });
+
+  // Buy Now
+  const buyNowButtons = document.querySelectorAll(".btn");
+  buyNowButtons.forEach(button => {
+    if (button.textContent.includes("Buy Now")) {
+      button.addEventListener("click", () => {
+        alert("Checkout coming soon! Here you’ll enter card or mobile money.");
+      });
+    }
+  });
+
+  // Contact form
+  const contactForm = document.querySelector("form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thank you! Your message has been sent.");
+      contactForm.reset();
     });
-
-    cartItemsContainer.innerHTML += `
-      <hr>
-      <p><strong>Total: $${total}</strong></p>
-    `;
-  }
-
-  cartModal.style.display = "block";
-}
-
-// Close Cart
-function closeCart() {
-  document.getElementById("cartModal").style.display = "none";
-}
-
-// Remove Item
-function removeFromCart(index) {
-  cart.splice(index, 1);
-  updateCartCount();
-  openCart(); // refresh cart
-}
-
-// Buy Now
-function buyNow(productName, price) {
-  let paymentMethod = prompt(
-    `You selected ${productName} ($${price}).\nChoose payment method: Card or Mobile Money`
-  );
-
-  if (paymentMethod) {
-    alert(`Redirecting to secure ${paymentMethod} payment for ${productName}.`);
-  }
-}
-
-// Checkout (from Cart)
-function checkout() {
-  if (cart.length === 0) {
-    alert("Your cart is empty!");
-    return;
-  }
-
-  let total = cart.reduce((sum, item) => sum + item.price, 0);
-  alert(`Proceeding to checkout.\nTotal Amount: $${total}`);
-
-  cart = [];
-  updateCartCount();
-  closeCart();
-}
-
-// Contact Form Submission
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  let message = document.getElementById("message").value;
-
-  if (name && email && message) {
-    alert("Thank you, " + name + "! Your message has been sent.");
-    document.getElementById("contactForm").reset();
-  } else {
-    alert("Please fill in all fields.");
   }
 });
 
