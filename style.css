@@ -210,7 +210,7 @@ footer .social-media a:hover {
 
 /* Cart Icon */
 .cart-img {
-  width: 60px;
+  width: 40px;
   height: 40px;
   vertical-align: middle;
 }
@@ -220,7 +220,7 @@ footer .social-media a:hover {
   top: 0;
   right: -350px; /* hidden by default */
   width: 300px;
-  height: 50%;
+  height: 60%;
   background: #fff;
   box-shadow: -2px 0 6px rgba(0,0,0,0.2);
   padding: 20px;
