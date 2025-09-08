@@ -65,15 +65,15 @@ body {
 .dropdown-menu li a {
   color: #333;
 }
-
 #cart-container {
-  position: relative;
+  position: relative; /* essential to position badge on top */
+  display: inline-block; /* keeps it inline with navbar items */
 }
 
 .cart-count {
   position: absolute;
-  top: -5px;
-  right: -10px;
+  top: -5px;   /* move badge above the image */
+  right: -5px; /* move badge to the right corner */
   background: red;
   color: white;
   font-size: 12px;
@@ -82,6 +82,7 @@ body {
   padding: 2px 6px;
   z-index: 10;
 }
+
 
 
 /* Section */
