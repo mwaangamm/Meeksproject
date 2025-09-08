@@ -65,6 +65,23 @@ body {
 .dropdown-menu li a {
   color: #333;
 }
+#cart-container {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+  z-index: 10;
+}
+
 
 /* Section */
 .section {
