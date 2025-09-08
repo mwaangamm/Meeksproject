@@ -80,7 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener("click", (e) => {
         const product = e.target.closest(".product");
         const name = product.querySelector("h3").textContent;
-        const price = (Math.random() * 50 + 20).toFixed(2); // Mock price
+        const priceText = product.querySelector(".price").textContent.replace("ZMW", "").trim();
+        const price = parseFloat(priceText);
+
         alert(
             "Checkout:\n\n" +
             name + " - ZMW " + price +
@@ -99,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let items = cartItems.map(item => `${item.name} - ZMW ${item.price}`).join("\n");
-let total = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
+    let total = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
 
 alert(
   "Checkout:\n\n" + items +
