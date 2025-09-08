@@ -82,6 +82,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  function checkout() {
+  if (cart.length === 0) {
+    alert("Your cart is empty.");
+    return;
+  }
+
+  let items = cart.map(item => `${item.name} - $${item.price}`).join("\n");
+  let total = cart.reduce((sum, item) => sum + item.price, 0);
+
+  alert("Checkout:\n\n" + items + "\n\nTotal: $" + total + "\n\nPayment widget here.");
+  
+  // Example: later you can replace with real payment integration
+  cart = []; 
+  updateCartCount();
+  updateCartModal();
+}
+
+
   // Contact form
   const contactForm = document.querySelector("form");
   if (contactForm) {
