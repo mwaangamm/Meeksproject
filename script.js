@@ -72,33 +72,46 @@ document.addEventListener("DOMContentLoaded", () => {
     cartSidebar.classList.remove("active");
   });
 
-  // Buy Now
+  // ✅ Buy Now (direct checkout with one product)
   const buyNowButtons = document.querySelectorAll(".btn");
   buyNowButtons.forEach(button => {
     if (button.textContent.includes("Buy Now")) {
-      button.addEventListener("click", () => {
-        alert("Checkout coming soon! Here you’ll enter card or mobile money.");
+      button.addEventListener("click", (e) => {
+        const product = e.target.closest(".product");
+        const name = product.querySelector("h3").textContent;
+        const price = (Math.random() * 50 + 20).toFixed(2); // Mock price
+        alert(
+          "Checkout:\n\n" +
+          name + " - $" + price +
+          "\n\nPayment widget here (Card / Mobile Money)."
+        );
       });
     }
   });
 
-  function checkout() {
-  if (cart.length === 0) {
-    alert("Your cart is empty.");
-    return;
-  }
+  // ✅ Checkout (for all cart items)
+  window.checkout = function () {
+    if (cartItems.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
 
-  let items = cart.map(item => `${item.name} - $${item.price}`).join("\n");
-  let total = cart.reduce((sum, item) => sum + item.price, 0);
+    let items = cartItems.map(item => `${item.name} - $${item.price}`).join("\n");
+    let total = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
 
-  alert("Checkout:\n\n" + items + "\n\nTotal: $" + total + "\n\nPayment widget here.");
-  
-  // Example: later you can replace with real payment integration
-  cart = []; 
-  updateCartCount();
-  updateCartModal();
-}
+    alert(
+      "Checkout:\n\n" + items +
+      "\n\nTotal: $" + total.toFixed(2) +
+      "\n\nPayment widget here (Card / Mobile Money)."
+    );
 
+    // Clear cart after checkout
+    cartItems.length = 0;
+    cartCount = 0;
+    cartTotal = 0;
+    badge.textContent = cartCount;
+    renderCart();
+  };
 
   // Contact form
   const contactForm = document.querySelector("form");
@@ -110,4 +123,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
