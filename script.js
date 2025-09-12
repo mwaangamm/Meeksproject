@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   let cartCount = 0;
   let cartTotal = 0;
-  const cartItems = [];
+  let cartItems = [];
 
   // Cart elements
   const cartIcon = document.getElementById("cart-icon");
@@ -17,18 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
   cartIcon.style.position = "relative";
   cartIcon.appendChild(badge);
 
-  // Handle Add to Cart
+  // Add to Cart
   const cartButtons = document.querySelectorAll(".btn");
   cartButtons.forEach(button => {
     if (button.textContent.includes("Add to Cart")) {
       button.addEventListener("click", (e) => {
         const product = e.target.closest(".product");
         const name = product.querySelector("h3").textContent;
-        const priceText = product.querySelector(".price").textContent.replace("ZMW", "").trim();
-        const price = parseFloat(priceText);
+        const price = (Math.random() * 200 + 50).toFixed(2); // Mock price in ZMW
         const imgSrc = product.querySelector("img").src;
 
-        // Update cart
         cartCount++;
         cartTotal += parseFloat(price);
         badge.textContent = cartCount;
@@ -46,17 +44,31 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cartItems.length === 0) {
       cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
     } else {
-      cartItems.forEach(item => {
+      cartItems.forEach((item, index) => {
         const div = document.createElement("div");
         div.classList.add("cart-item");
         div.innerHTML = `
           <img src="${item.imgSrc}" alt="${item.name}">
           <div class="cart-item-details">
             <strong>${item.name}</strong><br>
-            $${item.price}
+            ZMW ${item.price}
           </div>
+          <button class="remove-item" data-index="${index}">❌</button>
         `;
         cartItemsContainer.appendChild(div);
+      });
+
+      // Remove item event
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const index = e.target.dataset.index;
+          cartTotal -= parseFloat(cartItems[index].price);
+          cartItems.splice(index, 1);
+          cartCount--;
+          badge.textContent = cartCount;
+          if (cartCount === 0) badge.style.display = "none";
+          renderCart();
+        });
       });
     }
     cartTotalEl.textContent = cartTotal.toFixed(2);
@@ -73,49 +85,32 @@ document.addEventListener("DOMContentLoaded", () => {
     cartSidebar.classList.remove("active");
   });
 
-  // ✅ Buy Now (direct checkout with one product)
-  const buyNowButtons = document.querySelectorAll(".btn");
-  buyNowButtons.forEach(button => {
-    if (button.textContent.includes("Buy Now")) {
-      button.addEventListener("click", (e) => {
-        const product = e.target.closest(".product");
-        const name = product.querySelector("h3").textContent;
-        const priceText = product.querySelector(".price").textContent.replace("ZMW", "").trim();
-        const price = parseFloat(priceText);
-
-        alert(
-            "Checkout:\n\n" +
-            name + " - ZMW " + price +
-          "\n\nPayment widget here (Card / Mobile Money)."
-       );
-
-      });
-    }
-  });
-
-  // ✅ Checkout (for all cart items)
-  window.checkout = function () {
+  // Checkout Modal
+  const checkoutBtn = document.getElementById("checkout-btn");
+  checkoutBtn.addEventListener("click", () => {
     if (cartItems.length === 0) {
       alert("Your cart is empty.");
       return;
     }
+    document.getElementById("checkout-modal").style.display = "flex";
+  });
 
-    let items = cartItems.map(item => `${item.name} - ZMW ${item.price}`).join("\n");
-    let total = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
+  // Payment method selection
+  document.getElementById("pay-mobile").addEventListener("click", () => {
+    alert("You selected Mobile Money. Payment coming soon...");
+    closeCheckoutModal();
+  });
 
-alert(
-  "Checkout:\n\n" + items +
-  "\n\nTotal: ZMW " + total.toFixed(2) +
-  "\n\nPayment widget here (Card / Mobile Money)."
-);
+  document.getElementById("pay-card").addEventListener("click", () => {
+    alert("You selected Card Payment. Payment coming soon...");
+    closeCheckoutModal();
+  });
 
-    // Clear cart after checkout
-    cartItems.length = 0;
-    cartCount = 0;
-    cartTotal = 0;
-    badge.textContent = cartCount;
-    renderCart();
-  };
+  document.getElementById("close-checkout").addEventListener("click", closeCheckoutModal);
+
+  function closeCheckoutModal() {
+    document.getElementById("checkout-modal").style.display = "none";
+  }
 
   // Contact form
   const contactForm = document.querySelector("form");
@@ -127,5 +122,4 @@ alert(
     });
   }
 });
-
 
