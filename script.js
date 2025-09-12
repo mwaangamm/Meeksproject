@@ -81,7 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener("click", (e) => {
         const product = e.target.closest(".product");
         const name = product.querySelector("h3").textContent;
-        
+        const priceText = product.querySelector(".price").textContent.replace("ZMW", "").trim();
+        const price = parseFloat(priceText);
         let items = cartItems.map(item => `${item.name} - ZMW ${item.price}`).join("\n");
         let total = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
 
