@@ -3,42 +3,59 @@ document.addEventListener("DOMContentLoaded", () => {
   let cartTotal = 0;
   let cartItems = [];
 
-  // Cart elements
+  // Elements
   const cartIcon = document.getElementById("cart-icon");
   const cartSidebar = document.getElementById("cart-sidebar");
   const closeCartBtn = document.getElementById("close-cart");
   const cartItemsContainer = document.getElementById("cart-items");
   const cartTotalEl = document.getElementById("cart-total");
+  const checkoutBtn = document.getElementById("checkout-btn");
 
   // Badge
   const badge = document.createElement("span");
   badge.id = "cart-count";
   badge.textContent = cartCount;
-  cartIcon.style.position = "relative";
+  badge.style.position = "absolute";
+  badge.style.top = "-5px";
+  badge.style.right = "-10px";
+  badge.style.background = "red";
+  badge.style.color = "white";
+  badge.style.fontSize = "12px";
+  badge.style.padding = "2px 6px";
+  badge.style.borderRadius = "50%";
+  badge.style.display = "none";
   cartIcon.appendChild(badge);
 
   // Add to Cart
-  const cartButtons = document.querySelectorAll(".btn");
-  cartButtons.forEach(button => {
-    if (button.textContent.includes("Add to Cart")) {
-      button.addEventListener("click", (e) => {
-        const product = e.target.closest(".product");
-        const name = product.querySelector("h3").textContent;
-        const price = (Math.random() * 200 + 50).toFixed(2); // Mock price in ZMW
-        const imgSrc = product.querySelector("img").src;
+  document.querySelectorAll(".add-cart").forEach(button => {
+    button.addEventListener("click", (e) => {
+      const product = e.target.closest(".product");
+      const name = product.querySelector("h3").textContent;
+      const price = parseFloat(product.querySelector(".price").dataset.price);
+      const imgSrc = product.querySelector("img").src;
 
-        cartCount++;
-        cartTotal += parseFloat(price);
-        badge.textContent = cartCount;
-        badge.style.display = "inline-block";
+      cartCount++;
+      cartTotal += price;
+      badge.textContent = cartCount;
+      badge.style.display = "inline-block";
 
-        cartItems.push({ name, price, imgSrc });
-        renderCart();
-      });
-    }
+      cartItems.push({ name, price, imgSrc });
+      renderCart();
+    });
   });
 
-  // Render Cart Items
+  // Buy Now
+  document.querySelectorAll(".buy-now").forEach(button => {
+    button.addEventListener("click", (e) => {
+      const product = e.target.closest(".product");
+      const name = product.querySelector("h3").textContent;
+      const price = parseFloat(product.querySelector(".price").dataset.price);
+
+      openCheckout([{ name, price }]); // Checkout only this item
+    });
+  });
+
+  // Render Cart
   function renderCart() {
     cartItemsContainer.innerHTML = "";
     if (cartItems.length === 0) {
@@ -58,11 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
         cartItemsContainer.appendChild(div);
       });
 
-      // Remove item event
+      // Remove item
       document.querySelectorAll(".remove-item").forEach(btn => {
         btn.addEventListener("click", (e) => {
           const index = e.target.dataset.index;
-          cartTotal -= parseFloat(cartItems[index].price);
+          cartTotal -= cartItems[index].price;
           cartItems.splice(index, 1);
           cartCount--;
           badge.textContent = cartCount;
@@ -85,24 +102,29 @@ document.addEventListener("DOMContentLoaded", () => {
     cartSidebar.classList.remove("active");
   });
 
-  // Checkout Modal
-  const checkoutBtn = document.getElementById("checkout-btn");
+  // Checkout from cart
   checkoutBtn.addEventListener("click", () => {
     if (cartItems.length === 0) {
       alert("Your cart is empty.");
       return;
     }
-    document.getElementById("checkout-modal").style.display = "flex";
+    openCheckout(cartItems);
   });
 
-  // Payment method selection
+  // Checkout modal functions
+  function openCheckout(items) {
+    let total = items.reduce((sum, item) => sum + item.price, 0);
+    document.getElementById("checkout-total").textContent = total.toFixed(2);
+    document.getElementById("checkout-modal").style.display = "flex";
+  }
+
   document.getElementById("pay-mobile").addEventListener("click", () => {
-    alert("You selected Mobile Money. Payment coming soon...");
+    alert("You selected Mobile Money. Payment integration coming soon...");
     closeCheckoutModal();
   });
 
   document.getElementById("pay-card").addEventListener("click", () => {
-    alert("You selected Card Payment. Payment coming soon...");
+    alert("You selected Card Payment. Payment integration coming soon...");
     closeCheckoutModal();
   });
 
