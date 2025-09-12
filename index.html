@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maxos Fashion Store</title>
+  <title>Retail Shop</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -11,7 +11,7 @@
 
   <!-- Navigation -->
   <nav class="navbar">
-    <div class="logo">Maxos Store</div>
+    <div class="logo">Retail Shop</div>
     <ul class="nav-links">
       <li class="dropdown">
         <a href="#">Products ▾</a>
@@ -157,7 +157,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Maxos Store. All Rights Reserved.</p>
+    <p>&copy; 2025 Retail Shop. All Rights Reserved.</p>
     <div class="social-media">
       <a href="https://facebook.com" target="_blank">Facebook</a> |
       <a href="https://instagram.com" target="_blank">Instagram</a> |
@@ -181,6 +181,17 @@
 </div>
 
   <script src="script.js"></script>
+  <!-- Checkout Modal -->
+<div id="checkout-modal" class="checkout-modal">
+  <div class="checkout-content">
+    <span id="close-checkout" class="close-btn">&times;</span>
+    <h2>Select Payment Method</h2>
+    <p>Total: ZMW <span id="checkout-total"></span></p>
+    <button id="pay-mobile" class="btn">Pay with Mobile Money</button>
+    <button id="pay-card" class="btn">Pay with Card</button>
+  </div>
+</div>
+
 </body>
 </html>
 
