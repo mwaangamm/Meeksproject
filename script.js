@@ -24,7 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener("click", (e) => {
         const product = e.target.closest(".product");
         const name = product.querySelector("h3").textContent;
-        const price = (Math.random() * 50 + 20).toFixed(2); // Mock price
+       const priceText = product.querySelector(".price").textContent.replace("ZMW", "").trim();
+       const price = parseFloat(priceText);
+
         const imgSrc = product.querySelector("img").src;
 
         // Update cart
@@ -79,12 +81,15 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener("click", (e) => {
         const product = e.target.closest(".product");
         const name = product.querySelector("h3").textContent;
-        const price = (Math.random() * 50 + 20).toFixed(2); // Mock price
+        
+        let items = cartItems.map(item => `${item.name} - ZMW ${item.price}`).join("\n");
+        let total = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
+
         alert(
-          "Checkout:\n\n" +
-          name + " - $" + price +
-          "\n\nPayment widget here (Card / Mobile Money)."
-        );
+              "Checkout:\n\n" + items +
+              "\n\nTotal: ZMW " + total.toFixed(2) +
+              "\n\nPayment widget here (Card / Mobile Money)."
+         );
       });
     }
   });
@@ -95,15 +100,15 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Your cart is empty.");
       return;
     }
-
-    let items = cartItems.map(item => `${item.name} - $${item.price}`).join("\n");
+    let items = cartItems.map(item => `${item.name} - ZMW ${item.price}`).join("\n");
     let total = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
 
-    alert(
-      "Checkout:\n\n" + items +
-      "\n\nTotal: $" + total.toFixed(2) +
-      "\n\nPayment widget here (Card / Mobile Money)."
-    );
+              alert(
+                    "Checkout:\n\n" + items +
+                    "\n\nTotal: ZMW " + total.toFixed(2) +
+                    "\n\nPayment widget here (Card / Mobile Money)."
+          );
+
 
     // Clear cart after checkout
     cartItems.length = 0;
