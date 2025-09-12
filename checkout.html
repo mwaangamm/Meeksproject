@@ -7,35 +7,6 @@
   <link rel="stylesheet" href="checkout.css">
 </head>
 <body>
-  <div class="checkout-container">
-    <h1>Checkout</h1>
-    <p class="checkout-total">Total: ZMW <span id="checkout-total">0</span></p>
-
-    <h2>Card Payment</h2>
-    <form id="card-form" class="card-form">
-      <label for="card-name">Cardholder Name</label>
-      <input type="text" id="card-name" placeholder="Enter cardholder name" required>
-
-      <label for="card-number">Card Number</label>
-      <input type="text" id="card-number" maxlength="16" placeholder="1234 5678 9012 3456" required>
-
-      <div class="card-row">
-        <div>
-          <label for="expiry">Expiry Date</label>
-          <input type="text" id="expiry" maxlength="5" placeholder="MM/YY" required>
-        </div>
-        <div>
-          <label for="cvv">CVV</label>
-          <input type="password" id="cvv" maxlength="3" placeholder="123" required>
-        </div>
-      </div>
-
-      <button type="submit" class="btn pay-btn">Pay Now</button>
-    </form>
-
-    <button id="back-btn" class="btn back">← Back to Store</button>
-  </div>
-
   <!-- Checkout Modal -->
 <div id="checkout-modal" class="checkout-modal">
   <div class="checkout-content">
