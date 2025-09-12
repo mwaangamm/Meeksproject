@@ -30,29 +30,3 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "index.html";
   });
 });
-
-// Open Checkout
-document.getElementById("checkout-btn").addEventListener("click", function () {
-  if (cart.length === 0) {
-    alert("Your cart is empty!");
-    return;
-  }
-  document.getElementById("checkout-modal").style.display = "flex";
-  document.getElementById("checkout-total").textContent = total.toFixed(2);
-});
-
-// Close Checkout
-document.getElementById("close-checkout").addEventListener("click", function () {
-  document.getElementById("checkout-modal").style.display = "none";
-});
-
-// Submit Payment
-document.getElementById("card-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  alert("Payment processing... (demo only)");
-  document.getElementById("checkout-modal").style.display = "none";
-  cart = [];
-  total = 0;
-  updateCartCount();
-  renderCart();
-});
