@@ -65,24 +65,34 @@ body {
 .dropdown-menu li a {
   color: #333;
 }
-#cart-container {
-  position: relative; /* essential to position badge on top */
-  display: inline-block; /* keeps it inline with navbar items */
+/* Cart Icon container */
+#cart-icon {
+  position: relative;   /* allows badge to sit on top */
+  display: inline-block;
+  cursor: pointer;
 }
 
-/* Cart icon badge */
+/* Cart Icon image */
+#cart-icon img {
+  width: 28px;          /* recommended size for nav bar */
+  height: auto;
+}
+
+/* Cart badge (item count) */
 #cart-count {
   position: absolute;
-  top: -8px;
+  top: -6px;
   right: -8px;
-  background: red;
+  background: #e60023; /* red bubble */
   color: #fff;
   font-size: 12px;
   font-weight: bold;
   padding: 2px 6px;
   border-radius: 50%;
-  display: none; /* hidden until items are added */
+  display: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
+
 
 
 /* Section */
@@ -327,10 +337,3 @@ footer .social-media a:hover {
   cursor: pointer;
 }
 
-/* Product Buttons */
-.product .btn {
-  display: inline-block;
-  width: 48%;             /* two buttons side by side */
-  margin: 5px 1%;
-  padding: 10px;
-  background: #
