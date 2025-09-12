@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let cartCount = 0;
-  let cartTotal = 0;
-  const cartItems = [];
+  let cartItems = [];
 
   // Cart elements
   const cartIcon = document.getElementById("cart-icon");
@@ -9,31 +7,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeCartBtn = document.getElementById("close-cart");
   const cartItemsContainer = document.getElementById("cart-items");
   const cartTotalEl = document.getElementById("cart-total");
+  const checkoutBtn = document.getElementById("checkout-btn");
 
-  // Badge
+  // Badge on cart
   const badge = document.createElement("span");
   badge.id = "cart-count";
-  badge.textContent = cartCount;
+  badge.textContent = "0";
+  badge.style.position = "absolute";
+  badge.style.top = "0";
+  badge.style.right = "0";
+  badge.style.background = "red";
+  badge.style.color = "white";
+  badge.style.fontSize = "12px";
+  badge.style.padding = "2px 5px";
+  badge.style.borderRadius = "50%";
+  badge.style.display = "none";
   cartIcon.style.position = "relative";
   cartIcon.appendChild(badge);
 
   // Handle Add to Cart
-  const cartButtons = document.querySelectorAll(".btn");
-  cartButtons.forEach(button => {
+  const addToCartButtons = document.querySelectorAll(".btn");
+  addToCartButtons.forEach(button => {
     if (button.textContent.includes("Add to Cart")) {
       button.addEventListener("click", (e) => {
         const product = e.target.closest(".product");
         const name = product.querySelector("h3").textContent;
-        const priceText = product.querySelector(".price").textContent.replace("ZMW", "").trim();
-        const price = parseFloat(priceText);
-
+        const price = parseFloat(product.querySelector(".price").textContent.replace("ZMW", "").trim());
         const imgSrc = product.querySelector("img").src;
-
-        // Update cart
-        cartCount++;
-        cartTotal += parseFloat(price);
-        badge.textContent = cartCount;
-        badge.style.display = "inline-block";
 
         cartItems.push({ name, price, imgSrc });
         renderCart();
@@ -41,26 +41,56 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Render Cart Items
+  // Handle Buy Now
+  const buyNowButtons = document.querySelectorAll(".btn");
+  buyNowButtons.forEach(button => {
+    if (button.textContent.includes("Buy Now")) {
+      button.addEventListener("click", (e) => {
+        const product = e.target.closest(".product");
+        const price = parseFloat(product.querySelector(".price").textContent.replace("ZMW", "").trim());
+
+        localStorage.setItem("checkoutTotal", price);
+        window.location.href = "checkout.html";
+      });
+    }
+  });
+
+  // Render Cart
   function renderCart() {
     cartItemsContainer.innerHTML = "";
     if (cartItems.length === 0) {
       cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+      badge.style.display = "none";
     } else {
-      cartItems.forEach(item => {
+      cartItems.forEach((item, index) => {
         const div = document.createElement("div");
         div.classList.add("cart-item");
         div.innerHTML = `
           <img src="${item.imgSrc}" alt="${item.name}">
           <div class="cart-item-details">
             <strong>${item.name}</strong><br>
-            $${item.price}
+            ZMW ${item.price.toFixed(2)}
           </div>
+          <button class="remove-btn" data-index="${index}">Remove</button>
         `;
         cartItemsContainer.appendChild(div);
       });
+
+      // Add event listener for remove buttons
+      document.querySelectorAll(".remove-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const index = e.target.getAttribute("data-index");
+          cartItems.splice(index, 1);
+          renderCart();
+        });
+      });
+
+      badge.textContent = cartItems.length;
+      badge.style.display = "inline-block";
     }
-    cartTotalEl.textContent = cartTotal.toFixed(2);
+
+    const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+    cartTotalEl.textContent = total.toFixed(2);
   }
 
   // Open cart
@@ -74,43 +104,18 @@ document.addEventListener("DOMContentLoaded", () => {
     cartSidebar.classList.remove("active");
   });
 
-  // ✅ Buy Now (direct checkout with one product)
-  const buyNowButtons = document.querySelectorAll(".btn");
-  buyNowButtons.forEach(button => {
-    if (button.textContent.includes("Buy Now")) {
-      button.addEventListener("click", (e) => {
-        const product = e.target.closest(".product");
-        const name = product.querySelector("h3").textContent;
-        const priceText = product.querySelector(".price").textContent.replace("ZMW", "").trim();
-        const price = parseFloat(priceText);
-      
-      });
-    }
-  });
-
-  // ✅ Checkout (for all cart items)
-  window.checkout = function () {
-    if (cartItems.length === 0) {
-      alert("Your cart is empty.");
-      return;
-    }
-    let items = cartItems.map(item => `${item.name} - ZMW ${item.price}`).join("\n");
-    let total = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
-
-              alert(
-                    "Checkout:\n\n" + items +
-                    "\n\nTotal: ZMW " + total.toFixed(2) +
-                    "\n\nPayment widget here (Card / Mobile Money)."
-          );
-
-
-    // Clear cart after checkout
-    cartItems.length = 0;
-    cartCount = 0;
-    cartTotal = 0;
-    badge.textContent = cartCount;
-    renderCart();
-  };
+  // Checkout button (from cart)
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+      if (cartItems.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+      const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+      localStorage.setItem("checkoutTotal", total.toFixed(2));
+      window.location.href = "checkout.html";
+    });
+  }
 
   // Contact form
   const contactForm = document.querySelector("form");
@@ -122,6 +127,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
 
 
