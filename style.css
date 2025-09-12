@@ -142,21 +142,25 @@ body {
   color: #333;
 }
 
-/* Buttons */
-.btn, button {
-  background-color: #e91e63;
+/* Product Buttons */
+.product .btn {
+  display: inline-block;
+  width: 48%;              /* two buttons side by side */
+  margin: 5px 1%;
+  padding: 10px;
+  background: #0073e6;     /* clean blue (change if you prefer fashion pink/red) */
   color: #fff;
-  padding: 10px 16px;
+  font-size: 14px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s ease;
-  margin: 5px 0;
 }
 
-.btn:hover, button:hover {
-  background-color: #c2185b;
+.product .btn:hover {
+  background: #005bb5;     /* darker blue on hover */
 }
+
 
 /* About Section */
 .about {
