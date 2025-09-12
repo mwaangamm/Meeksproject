@@ -83,14 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const name = product.querySelector("h3").textContent;
         const priceText = product.querySelector(".price").textContent.replace("ZMW", "").trim();
         const price = parseFloat(priceText);
-        let items = cartItems.map(item => `${item.name} - ZMW ${item.price}`).join("\n");
-        let total = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
-
-        alert(
-              "Checkout:\n\n" + items +
-              "\n\nTotal: ZMW " + total.toFixed(2) +
-              "\n\nPayment widget here (Card / Mobile Money)."
-         );
+      
       });
     }
   });
