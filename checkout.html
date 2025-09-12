@@ -36,6 +36,31 @@
     <button id="back-btn" class="btn back">← Back to Store</button>
   </div>
 
+  <!-- Checkout Modal -->
+<div id="checkout-modal" class="checkout-modal">
+  <div class="checkout-content">
+    <span id="close-checkout" class="close-btn">&times;</span>
+    <h2>Card Payment</h2>
+    <form id="card-form">
+      <label for="card-number">Card Number</label>
+      <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+
+      <label for="card-name">Cardholder Name</label>
+      <input type="text" id="card-name" placeholder="John Doe" required>
+
+      <label for="expiry">Expiry Date</label>
+      <input type="text" id="expiry" placeholder="MM/YY" required>
+
+      <label for="cvv">CVV</label>
+      <input type="password" id="cvv" placeholder="123" required>
+
+      <p>Total: ZMW <span id="checkout-total"></span></p>
+
+      <button type="submit" class="btn">Pay Now</button>
+    </form>
+  </div>
+</div>
+
   <script src="checkout.js"></script>
 </body>
 </html>
