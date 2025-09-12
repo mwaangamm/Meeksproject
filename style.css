@@ -132,14 +132,6 @@ body {
   color: #333;
 }
 
-/* Product Buttons */
-.product .btn {
-  display: inline-block;
-  width: 48%;             /* two buttons side by side */
-  margin: 5px 1%;
-  padding: 10px;
-  background: #
-
 /* Buttons */
 .btn, button {
   background-color: #e91e63;
@@ -335,3 +327,10 @@ footer .social-media a:hover {
   cursor: pointer;
 }
 
+/* Product Buttons */
+.product .btn {
+  display: inline-block;
+  width: 48%;             /* two buttons side by side */
+  margin: 5px 1%;
+  padding: 10px;
+  background: #
