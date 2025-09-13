@@ -68,12 +68,19 @@ body {
 }
 
 /* Hero Section */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+  padding: 80px 20px;
+  background: url("https://raw.github.com/mwaangamm/Meeksproject/main/abou.png")
+               no-repeat center center/cover;
+  color: #fff;
+  position: relative;
+}
 
-/* Overlay for readability */
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0
 
 
 .hero-text {
