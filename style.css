@@ -72,10 +72,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  padding: 80px 20px;
-  background: #fff;
+  text-align: center;
+  padding: 120px 20px; /* taller hero */
+  background: url("https://raw.githubusercontent.com/mwaangamm/Meeksproject/main/hero.png") 
+              no-repeat center center/cover; /* background image */
+  color: #fff; /* make text visible */
+  position: relative;
 }
+
+/* Overlay for readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0
+
 
 .hero-text {
   flex: 1;
