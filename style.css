@@ -79,7 +79,7 @@ body {
 
 .hero-text {
   flex: 1;
-  text-align: left;
+  text-align: center;
 }
 
 .hero-text h1 {
@@ -182,7 +182,7 @@ body {
 
 .about-text {
   flex: 1;
-  text-align: left;
+  text-align: center;
 }
 
 .about-text h2 {
