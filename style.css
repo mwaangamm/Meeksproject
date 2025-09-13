@@ -67,19 +67,19 @@ body {
   color: #333;
 }
 
-/* Hero Section */
+/* CSS */
+/* Hero Image Section */
 .hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 60px;
-  padding: 80px 20px;
   height: 100vh; /* Full viewport height */
   background: url("https://raw.github.com/mwaangamm/Meeksproject/main/abou.png") 
               no-repeat center center/cover;
+}
+
+/* Text Section Below Hero */
+.hero-text {
+  text-align: center;
+  padding: 40px 20px;
   color: #000;
-  position: relative;
 }
 
 
