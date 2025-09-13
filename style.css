@@ -73,11 +73,11 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 40px;
+  gap: 60px;
   padding: 80px 20px;
   background: url("https://raw.github.com/mwaangamm/Meeksproject/main/abou.png")
                no-repeat center center/cover;
-  color: #fff;
+  color: #000;
   position: relative;
 }
 
